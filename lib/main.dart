@@ -1,4 +1,5 @@
 import 'package:capture_it/pages/home_page.dart';
+import 'package:capture_it/pages/barcode_page.dart';
 import 'package:capture_it/utils/routes.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       routes: {
-        CaptureITRoutes.defaultRoute : (context) => Home(),
+        CaptureITRoutes.defaultRoute: (context) => BarcodePage(),
       },
     );
   }

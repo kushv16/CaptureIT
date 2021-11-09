@@ -1,11 +1,11 @@
-import "package:flutter/material.dart";
+// import "package:flutter/material.dart";
 
-class Camera extends StatelessWidget {
-  const Camera({Key? key}) : super(key: key);
+// class Camera extends StatelessWidget {
+//   const Camera({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return Text("Hello World!");
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Text("Hello World!");
+//     );
+//   }
+// }
