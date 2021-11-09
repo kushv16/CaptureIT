@@ -9,12 +9,12 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   GoogleTranslator translator = GoogleTranslator();
 
-  String text = "Hello how are you bitch?";
+  String text = "how are you";
 
   void translate() {
-    translator.translate(text, to: "hi").then((output) {
+    translator.translate(text, to: "mr").then((output) {
       setState(() {
-        text = output as String;
+        text = output.text;
       });
     });
   }
@@ -23,7 +23,10 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Language Translation"),
+          title: Text(
+            "Language Translation",
+            style: new TextStyle(color: Colors.red),
+          ),
         ),
         body: Container(
           height: MediaQuery.of(context).size.height,
