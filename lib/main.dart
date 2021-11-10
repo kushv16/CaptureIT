@@ -1,3 +1,4 @@
+import 'package:capture_it/pages/camera_page.dart';
 import 'package:capture_it/pages/home_page.dart';
 import 'package:capture_it/pages/barcode_page.dart';
 import 'package:capture_it/utils/routes.dart';
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       routes: {
-        CaptureITRoutes.defaultRoute: (context) => BarcodePage(),
+        CaptureITRoutes.defaultRoute: (context) => CameraPage(),
       },
     );
   }

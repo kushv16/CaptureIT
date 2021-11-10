@@ -38,6 +38,13 @@ dependencies:
   translator: ^0.1.7
   barcode_scan: ^3.0.1
   url_launcher: ^6.0.12
+  google_fonts: ^2.1.0
+  firebase_ml_vision: ^0.9.10
+  clipboard: ^0.1.2+8
+  # http:
+  # path_provider:
+  # image:
+  # image_picker:
 
 dev_dependencies:
   flutter_test:
