@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -17,14 +18,14 @@ class BarcodePageState extends State<BarcodePage> {
     try {
       ScanResult qrScanResult = await BarcodeScanner.scan();
       String qrResult = qrScanResult.rawContent;
-      print(qrResult);
+      qrResult = Uri.encodeFull(qrResult);
       setState(() {
         result = qrResult;
       });
       if (await canLaunch(qrResult)) {
-        await launch(qrResult);
+        await launch(qrResult, forceWebView: true);
       } else {
-        throw 'Could not launch $qrResult';
+        throw ' : Could not launch $qrResult';
       }
     } on PlatformException catch (e) {
       if (e.code == BarcodeScanner.cameraAccessDenied) {
