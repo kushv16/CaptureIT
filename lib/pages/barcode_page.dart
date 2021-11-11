@@ -18,14 +18,17 @@ class BarcodePageState extends State<BarcodePage> {
     try {
       ScanResult qrScanResult = await BarcodeScanner.scan();
       String qrResult = qrScanResult.rawContent;
-      qrResult = Uri.encodeFull(qrResult);
-      setState(() {
-        result = qrResult;
-      });
+      // qrResult = Uri.encodeFull(qrResult);
       if (await canLaunch(qrResult)) {
-        await launch(qrResult, forceWebView: true);
+        try {
+          await launch(qrResult, forceWebView: true);
+        } on PlatformException {
+          throw ' : some platform exception';
+        }
       } else {
-        throw ' : Could not launch $qrResult';
+        setState(() {
+          result = qrResult;
+        });
       }
     } on PlatformException catch (e) {
       if (e.code == BarcodeScanner.cameraAccessDenied) {
