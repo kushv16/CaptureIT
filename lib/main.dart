@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       routes: {
-        CaptureITRoutes.defaultRoute: (context) => BarcodePage(),
+        CaptureITRoutes.defaultRoute: (context) => CameraPage(),
       },
     );
   }
