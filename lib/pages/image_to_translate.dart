@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'details.dart';
+import 'package:translator/translator.dart';
 
 class ImageTranslate extends StatefulWidget {
   const ImageTranslate({Key? key}) : super(key: key);
@@ -17,57 +18,65 @@ class ImageTranslate extends StatefulWidget {
 
 class _ImageTranslateState extends State<ImageTranslate> {
   String _text = '';
-  String _value = '';
+  String _value = 'af';
+  String _output = "";
   var _image = null;
   final picker = ImagePicker();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Text Recognition'),
-          actions: [
-            DropdownButton(
-                value: _value,
-                items: [
-                  DropdownMenuItem(
-                    child: Text("First Item"),
-                    value: 1,
-                  ),
-                  DropdownMenuItem(
-                    child: Text("Second Item"),
-                    value: 2,
-                  )
-                ],
-                onChanged: (int value) {
-                  setState(() {
-                    _value = value;
-                  });
-                },
-                hint: Text("Select item")),
-            FlatButton(
-              onPressed: scanText,
-              child: Text(
-                'Scan',
-                style: TextStyle(color: Colors.white),
-              ),
-            )
-          ],
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: getImage,
-          child: Icon(Icons.add_a_photo),
-        ),
-        body: Container(
-          height: double.infinity,
-          width: double.infinity,
-          child: _image != null
-              ? Image.file(
-                  File(_image.path),
-                  fit: BoxFit.fitWidth,
-                )
-              : Container(),
-        ));
+      appBar: AppBar(
+        title: Text('Text Recognition'),
+        actions: [
+          DropdownButton(
+            value: _value,
+            items: [
+              DropdownMenuItem(child: Text("Afrikaans"), value: "af"),
+              DropdownMenuItem(child: Text("Albanian"), value: "sq"),
+              DropdownMenuItem(child: Text("Amharic"), value: "am"),
+              DropdownMenuItem(child: Text("Arabic"), value: "ar"),
+              DropdownMenuItem(child: Text("Armenian"), value: "hy"),
+              DropdownMenuItem(child: Text("Azerbaijani"), value: "az"),
+              DropdownMenuItem(child: Text("Basque"), value: "eu"),
+              DropdownMenuItem(child: Text("Belarusian"), value: "be"),
+              DropdownMenuItem(child: Text("Bengali"), value: "bn"),
+              DropdownMenuItem(child: Text("Bosnian"), value: "bs"),
+              DropdownMenuItem(child: Text("Bulgarian"), value: "bg"),
+              DropdownMenuItem(child: Text("Catalan"), value: "ca"),
+              DropdownMenuItem(child: Text("Marathi"), value: "mr"),
+            ],
+            hint: Text("Select item"),
+            onChanged: (String? newValue) {
+              setState(() {
+                _value = newValue!;
+              });
+            },
+          ),
+          FlatButton(
+            onPressed: scanText,
+            child: Text(
+              'Scan',
+              style: TextStyle(color: Colors.white),
+            ),
+          )
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: getImage,
+        child: Icon(Icons.add_a_photo),
+      ),
+      body: Container(
+        height: double.infinity,
+        width: double.infinity,
+        child: _image != null
+            ? Image.file(
+                File(_image.path),
+                fit: BoxFit.fitWidth,
+              )
+            : Container(),
+      ),
+    );
   }
 
   Future scanText() async {
@@ -85,13 +94,13 @@ class _ImageTranslateState extends State<ImageTranslate> {
     _text = '';
     for (TextBlock block in visionText.blocks) {
       for (TextLine line in block.lines) {
-        _text += line.text + '\n';
+        _text += line.text + " ";
       }
     }
-
+    translateText(_text, _value);
     Navigator.of(context).pop();
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => Details(_text)));
+        .push(MaterialPageRoute(builder: (context) => Details(_output)));
   }
 
   Future getImage() async {
@@ -103,5 +112,19 @@ class _ImageTranslateState extends State<ImageTranslate> {
         print('No image selected');
       }
     });
+  }
+
+  void translateText(String text, String value) async {
+    if (text == "") {
+      _output = "No Text Detected!";
+    } else {
+      _output = await translate(text, value);
+    }
+  }
+
+  Future<String> translate(String text, String value) async {
+    GoogleTranslator translator = GoogleTranslator();
+    var result = await translator.translate(text, to: value);
+    return result.text;
   }
 }
