@@ -50,6 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 class Home extends StatelessWidget {
+  bool changeButton = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -127,7 +128,7 @@ class Home extends StatelessWidget {
               color: Colors.deepPurple,
               borderRadius: BorderRadius.circular(changeButton ? 50 : 8),
               child: InkWell(
-                onTap: () => moveToHome(context),
+                // onTap: () => moveToHome(context),
                 child: AnimatedContainer(
                   duration: Duration(seconds: 1),
                   width: changeButton ? 50 : 150,
