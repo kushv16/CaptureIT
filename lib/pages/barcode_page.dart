@@ -18,7 +18,6 @@ class BarcodePageState extends State<BarcodePage> {
     try {
       ScanResult qrScanResult = await BarcodeScanner.scan();
       String qrResult = qrScanResult.rawContent;
-      // qrResult = Uri.encodeFull(qrResult);
       if (await canLaunch(qrResult)) {
         try {
           await launch(qrResult, forceWebView: true);

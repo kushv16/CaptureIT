@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'home_page.dart';
+import 'text_translate.dart';
 
 void main() {
   runApp(MaterialApp(
