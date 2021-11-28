@@ -78,87 +78,51 @@ class HomePage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  Container(
-                    height: 175,
-                    width: 175,
-                    color: Colors.transparent,
+                  InkWell(
+                    onTap: () {
+                      print("hi"); // navigator
+                    },
                     child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.transparent,
-                        border: Border.all(
-                          color: Colors.black,
-                          width: 3,
+                      height: 175,
+                      width: 175,
+                      color: Colors.transparent,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.transparent,
+                          border: Border.all(
+                            color: Colors.black,
+                            width: 3,
+                          ),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(20),
+                          ),
                         ),
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(20),
-                        ),
+                        child: new Image.asset('assets/barcode.png'),
                       ),
-                      child: new Image.asset('assets/barcode.png'),
                     ),
                   ),
-                  Container(
-                    height: 175,
-                    width: 175,
-                    color: Colors.transparent,
+                  InkWell(
+                    onTap: () {
+                      print("hi");
+                    },
                     child: Container(
-                      padding: EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        color: Colors.transparent,
-                        border: Border.all(
-                          color: Colors.black,
-                          width: 3,
+                      height: 175,
+                      width: 175,
+                      color: Colors.transparent,
+                      child: Container(
+                        padding: EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          color: Colors.transparent,
+                          border: Border.all(
+                            color: Colors.black,
+                            width: 3,
+                          ),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(20),
+                          ),
                         ),
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(20),
-                        ),
+                        child: new Image.asset('assets/ocr.png'),
                       ),
-                      child: new Image.asset('assets/ocr.png'),
-                    ),
-                  ),
-                ],
-              ),
-              Padding(
-                padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Container(
-                    height: 175,
-                    width: 175,
-                    color: Colors.transparent,
-                    child: Container(
-                      padding: EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Colors.black,
-                          width: 3,
-                        ),
-                        color: Colors.transparent,
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(20),
-                        ),
-                      ),
-                      child: new Image.asset('assets/text.png'),
-                    ),
-                  ),
-                  Container(
-                    height: 175,
-                    width: 175,
-                    color: Colors.transparent,
-                    child: Container(
-                      padding: EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        color: Colors.transparent,
-                        border: Border.all(
-                          color: Colors.black,
-                          width: 3,
-                        ),
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(20),
-                        ),
-                      ),
-                      child: new Image.asset('assets/image_to_text.png'),
                     ),
                   ),
                 ],
@@ -169,41 +133,107 @@ class HomePage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  Container(
-                    height: 175,
-                    width: 175,
-                    color: Colors.transparent,
+                  InkWell(
+                    onTap: () {
+                      print("hi");
+                    },
                     child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.transparent,
-                        border: Border.all(
-                          color: Colors.black,
-                          width: 3,
+                      height: 175,
+                      width: 175,
+                      color: Colors.transparent,
+                      child: Container(
+                        padding: EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.black,
+                            width: 3,
+                          ),
+                          color: Colors.transparent,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(20),
+                          ),
                         ),
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(20),
-                        ),
+                        child: new Image.asset('assets/text.png'),
                       ),
-                      child: new Image.asset('assets/mic.png'),
                     ),
                   ),
-                  Container(
-                    height: 175,
-                    width: 175,
-                    color: Colors.transparent,
+                  InkWell(
+                    onTap: () {
+                      print("hi");
+                    },
                     child: Container(
-                      padding: EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        color: Colors.transparent,
-                        border: Border.all(
-                          color: Colors.black,
-                          width: 3,
+                      height: 175,
+                      width: 175,
+                      color: Colors.transparent,
+                      child: Container(
+                        padding: EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          color: Colors.transparent,
+                          border: Border.all(
+                            color: Colors.black,
+                            width: 3,
+                          ),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(20),
+                          ),
                         ),
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(20),
-                        ),
+                        child: new Image.asset('assets/image_to_text.png'),
                       ),
-                      child: new Image.asset('assets/map.png'),
+                    ),
+                  ),
+                ],
+              ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  InkWell(
+                    onTap: () {
+                      print("hi");
+                    },
+                    child: Container(
+                      height: 175,
+                      width: 175,
+                      color: Colors.transparent,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.transparent,
+                          border: Border.all(
+                            color: Colors.black,
+                            width: 3,
+                          ),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(20),
+                          ),
+                        ),
+                        child: new Image.asset('assets/mic.png'),
+                      ),
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      print("hi");
+                    },
+                    child: Container(
+                      height: 175,
+                      width: 175,
+                      color: Colors.transparent,
+                      child: Container(
+                        padding: EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          color: Colors.transparent,
+                          border: Border.all(
+                            color: Colors.black,
+                            width: 3,
+                          ),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(20),
+                          ),
+                        ),
+                        child: new Image.asset('assets/map.png'),
+                      ),
                     ),
                   ),
                 ],
