@@ -22,7 +22,7 @@ class BarcodePageState extends State<BarcodePage> {
         try {
           await launch(qrResult, forceWebView: true);
         } on PlatformException {
-          throw ' : some platform exception';
+          throw ' : This app does not support payment QR codes.';
         }
       } else {
         setState(() {

@@ -54,10 +54,103 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-          child: Text(
-        "Home page",
-        textScaleFactor: 2,
-      )),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Container(
+              width: 375,
+              height: 80,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  Container(
+                    color: Colors.yellow,
+                    child: new Image.asset('assets/logo.png'),
+                    alignment: Alignment.center,
+                  )
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+            ),
+            SizedBox(
+              width: 375,
+              height: 100,
+              child: FlatButton(
+                child: Text(
+                  'Testing',
+                  style: TextStyle(fontSize: 20.0),
+                ),
+                color: Colors.blueAccent,
+                textColor: Colors.white,
+                onPressed: () {},
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+            ),
+            SizedBox(
+              width: 375,
+              height: 100,
+              child: FlatButton(
+                child: Text(
+                  'Testing',
+                  style: TextStyle(fontSize: 20.0),
+                ),
+                color: Colors.blueAccent,
+                textColor: Colors.white,
+                onPressed: () {},
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+            ),
+            SizedBox(
+              width: 375,
+              height: 100,
+              child: FlatButton(
+                child: Text(
+                  'Testing',
+                  style: TextStyle(fontSize: 20.0),
+                ),
+                color: Colors.blueAccent,
+                textColor: Colors.white,
+                onPressed: () {},
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.fromLTRB(40, 40, 40, 40),
+            ),
+            Material(
+              color: Colors.deepPurple,
+              borderRadius: BorderRadius.circular(changeButton ? 50 : 8),
+              child: InkWell(
+                onTap: () => moveToHome(context),
+                child: AnimatedContainer(
+                  duration: Duration(seconds: 1),
+                  width: changeButton ? 50 : 150,
+                  height: 50,
+                  alignment: Alignment.center,
+                  child: changeButton
+                      ? Icon(
+                          Icons.done,
+                          color: Colors.white,
+                        )
+                      : Text(
+                          "Login",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18),
+                        ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
