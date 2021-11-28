@@ -35,8 +35,8 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
     Timer(
         Duration(seconds: 3),
-        () => Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => HomePage())));
+        () => Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => ImageTranslate())));
   }
 
   @override

@@ -46,7 +46,10 @@ class _ImageTranslateState extends State<ImageTranslate> {
               DropdownMenuItem(child: Text("Catalan"), value: "ca"),
               DropdownMenuItem(child: Text("Marathi"), value: "mr"),
             ],
-            hint: Text("Select item"),
+            hint: Text(
+              "Select item",
+              style: TextStyle(color: Colors.white),
+            ),
             onChanged: (String? newValue) {
               setState(() {
                 _value = newValue!;
@@ -97,7 +100,7 @@ class _ImageTranslateState extends State<ImageTranslate> {
         _text += line.text + " ";
       }
     }
-    translateText(_text, _value);
+    await translateText(_text, _value);
     Navigator.of(context).pop();
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => Details(_output)));
@@ -114,11 +117,14 @@ class _ImageTranslateState extends State<ImageTranslate> {
     });
   }
 
-  void translateText(String text, String value) async {
+  Future translateText(String text, String value) async {
     if (text == "") {
       _output = "No Text Detected!";
     } else {
-      _output = await translate(text, value);
+      final translated_text = await translate(text, value);
+      setState(() {
+        _output = translated_text;
+      });
     }
   }
 
