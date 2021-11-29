@@ -15,6 +15,6 @@ class TranslateApp extends StatefulWidget {
 class _TranslateAppState extends State<TranslateApp> {
   @override
   Widget build(BuildContext context) {
-    return Home();
+    return TextTranslate();
   }
 }
