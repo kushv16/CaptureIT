@@ -6,7 +6,7 @@ import 'package:firebase_ml_vision/firebase_ml_vision.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-import 'details.dart';
+import '../utils/details.dart';
 import 'package:translator/translator.dart';
 
 class ImageTranslate extends StatefulWidget {
@@ -27,7 +27,14 @@ class _ImageTranslateState extends State<ImageTranslate> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Text Recognition'),
+         backgroundColor: Colors.yellow,
+            iconTheme: IconThemeData(
+    color: Colors.black, //change your color here
+  ),
+          title: Text(
+            "OCR",
+            style: new TextStyle(color: Colors.black),
+          ),
         actions: [
           DropdownButton(
             value: _value,
@@ -56,13 +63,17 @@ class _ImageTranslateState extends State<ImageTranslate> {
               });
             },
           ),
-          FlatButton(
-            onPressed: scanText,
-            child: Text(
-              'Scan',
-              style: TextStyle(color: Colors.white),
-            ),
-          )
+            FlatButton(
+              onPressed: scanText,
+              shape: RoundedRectangleBorder(
+                side: BorderSide(color: Colors.black, width: 3),
+                borderRadius: BorderRadius.circular(30),
+              ),
+              child: Text(
+                'Scan',
+                style: TextStyle(color: Colors.black),
+              ),
+            )
         ],
       ),
       floatingActionButton: FloatingActionButton(

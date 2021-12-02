@@ -6,7 +6,7 @@ import 'package:firebase_ml_vision/firebase_ml_vision.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-import 'details.dart';
+import '../utils/details.dart';
 
 class CameraPage extends StatefulWidget {
   const CameraPage({Key? key}) : super(key: key);
@@ -24,13 +24,24 @@ class _CameraPageState extends State<CameraPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Text Recognition'),
+          backgroundColor: Colors.yellow,
+            iconTheme: IconThemeData(
+              color: Colors.black, //change your color here
+            ),
+          title: Text(
+            "OCR",
+            style: new TextStyle(color: Colors.black),
+          ),
           actions: [
             FlatButton(
               onPressed: scanText,
+              shape: RoundedRectangleBorder(
+                side: BorderSide(color: Colors.black, width: 3),
+                borderRadius: BorderRadius.circular(30),
+              ),
               child: Text(
                 'Scan',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: Colors.black),
               ),
             )
           ],

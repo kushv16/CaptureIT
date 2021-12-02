@@ -13,7 +13,7 @@ class BarcodePage extends StatefulWidget {
 }
 
 class BarcodePageState extends State<BarcodePage> {
-  String result = "Hey there!";
+  String result = "Start Scanning!";
   Future _scanQR() async {
     try {
       ScanResult qrScanResult = await BarcodeScanner.scan();
@@ -53,9 +53,16 @@ class BarcodePageState extends State<BarcodePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("QR Scanner"),
-      ),
+          appBar: AppBar(
+           backgroundColor: Colors.yellow,
+            iconTheme: IconThemeData(
+    color: Colors.black, //change your color here
+  ),
+          title: Text(
+            "QR Scanner",
+            style: new TextStyle(color: Colors.black),
+          ),
+        ),
       body: Center(
         child: Text(
           result,
@@ -63,8 +70,9 @@ class BarcodePageState extends State<BarcodePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
-        icon: Icon(Icons.camera_alt),
-        label: Text("Scan"),
+        backgroundColor: Colors.yellow,
+        icon: Icon(Icons.camera_alt, color:Colors.black),
+        label: Text("Scan", style: TextStyle(color: Colors.black)),
         onPressed: _scanQR,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,

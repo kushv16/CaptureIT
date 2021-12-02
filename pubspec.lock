@@ -78,6 +78,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.3"
+  dropdown_below:
+    dependency: "direct main"
+    description:
+      name: dropdown_below
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
+  dropdown_customizable:
+    dependency: "direct main"
+    description:
+      name: dropdown_customizable
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
   fake_async:
     dependency: transitive
     description:

@@ -1,9 +1,13 @@
 import 'dart:async';
-import 'package:capture_it/pages/camera_page.dart';
-import 'package:capture_it/pages/text_translate.dart';
-import 'package:capture_it/pages/barcode_page.dart';
+import 'package:capture_it/pages/audio_screen.dart';
+import 'package:capture_it/pages/ocr_screen.dart';
+import 'package:capture_it/pages/text_translation_screen.dart';
+import 'package:capture_it/pages/barcode_screen.dart';
 import 'package:capture_it/utils/routes.dart';
-import 'package:capture_it/pages/image_to_translate.dart';
+import 'package:capture_it/pages/image_with_translation_screen.dart';
+
+import 'package:capture_it/pages/map_screen.dart';
+import 'package:firebase_ml_vision/firebase_ml_vision.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -18,7 +22,16 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(),
+      routes: {
+        CaptureITRoutes.defaultRoute : (context) => MyHomePage(),
+        CaptureITRoutes.homeRoute : (context) => HomePage(),
+        CaptureITRoutes.barcodeRoute : (context) => BarcodePage(),
+        CaptureITRoutes.ocrRoute : (context) => CameraPage(),
+        CaptureITRoutes.imageTranslateRoute : (context) => ImageTranslate(),
+        CaptureITRoutes.translateRoute : (context) => TextTranslate(),
+        CaptureITRoutes.textToSpeechRoute: (context) => TextToSpeech(),
+        CaptureITRoutes.mapRoute: (context) => Map(),
+      },
       debugShowCheckedModeBanner: false,
     );
   }
@@ -36,7 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
     Timer(
         Duration(seconds: 1),
         () => Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (context) => TextTranslate())));
+            MaterialPageRoute(builder: (context) => HomePage())));
   }
 
   @override
@@ -54,195 +67,189 @@ class HomePage extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         backgroundColor: Colors.yellow,
-        appBar: AppBar(
+           appBar: AppBar(
+          backgroundColor: Colors.yellow,
           title: Text(
             "Capture IT",
-            style: new TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.bold,
-            ),
+            style: new TextStyle(color: Colors.black),
           ),
-          titleSpacing: 00.0,
-          centerTitle: true,
-          toolbarHeight: 60.2,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(360),
-          ),
-          elevation: 0.00,
-          backgroundColor: Colors.yellow,
         ),
         body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  InkWell(
-                    onTap: () {
-                      print("hi"); // navigator
-                    },
-                    child: Container(
-                      height: 175,
-                      width: 175,
-                      color: Colors.transparent,
+          child:SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    InkWell(
+                      onTap: () {
+                        Navigator.pushNamed(context, CaptureITRoutes.barcodeRoute);
+                      },
                       child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.transparent,
-                          border: Border.all(
-                            color: Colors.black,
-                            width: 3,
+                        height: 175,
+                        width: 175,
+                        color: Colors.transparent,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.transparent,
+                            border: Border.all(
+                              color: Colors.black,
+                              width: 3,
+                            ),
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(20),
+                            ),
                           ),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(20),
-                          ),
+                          child: new Image.asset('assets/barcode.png'),
                         ),
-                        child: new Image.asset('assets/barcode.png'),
                       ),
                     ),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      print("hi");
-                    },
-                    child: Container(
-                      height: 175,
-                      width: 175,
-                      color: Colors.transparent,
+                    InkWell(
+                      onTap: () {
+                        Navigator.pushNamed(context, CaptureITRoutes.ocrRoute);
+                      },
                       child: Container(
-                        padding: EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          color: Colors.transparent,
-                          border: Border.all(
-                            color: Colors.black,
-                            width: 3,
+                        height: 175,
+                        width: 175,
+                        color: Colors.transparent,
+                        child: Container(
+                          padding: EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            color: Colors.transparent,
+                            border: Border.all(
+                              color: Colors.black,
+                              width: 3,
+                            ),
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(20),
+                            ),
                           ),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(20),
-                          ),
+                          child: new Image.asset('assets/ocr.png'),
                         ),
-                        child: new Image.asset('assets/ocr.png'),
                       ),
                     ),
-                  ),
-                ],
-              ),
-              Padding(
-                padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  InkWell(
-                    onTap: () {
-                      print("hi");
-                    },
-                    child: Container(
-                      height: 175,
-                      width: 175,
-                      color: Colors.transparent,
+                  ],
+                ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    InkWell(
+                      onTap: () {
+                        Navigator.pushNamed(context, CaptureITRoutes.translateRoute);
+                      },
                       child: Container(
-                        padding: EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.black,
-                            width: 3,
+                        height: 175,
+                        width: 175,
+                        color: Colors.transparent,
+                        child: Container(
+                          padding: EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.black,
+                              width: 3,
+                            ),
+                            color: Colors.transparent,
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(20),
+                            ),
                           ),
-                          color: Colors.transparent,
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(20),
-                          ),
+                          child: new Image.asset('assets/text.png'),
                         ),
-                        child: new Image.asset('assets/text.png'),
                       ),
                     ),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      print("hi");
-                    },
-                    child: Container(
-                      height: 175,
-                      width: 175,
-                      color: Colors.transparent,
+                    InkWell(
+                      onTap: () {
+                        Navigator.pushNamed(context, CaptureITRoutes.imageTranslateRoute);
+                      },
                       child: Container(
-                        padding: EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          color: Colors.transparent,
-                          border: Border.all(
-                            color: Colors.black,
-                            width: 3,
+                        height: 175,
+                        width: 175,
+                        color: Colors.transparent,
+                        child: Container(
+                          padding: EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            color: Colors.transparent,
+                            border: Border.all(
+                              color: Colors.black,
+                              width: 3,
+                            ),
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(20),
+                            ),
                           ),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(20),
-                          ),
+                          child: new Image.asset('assets/image_to_text.png'),
                         ),
-                        child: new Image.asset('assets/image_to_text.png'),
                       ),
                     ),
-                  ),
-                ],
-              ),
-              Padding(
-                padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  InkWell(
-                    onTap: () {
-                      print("hi");
-                    },
-                    child: Container(
-                      height: 175,
-                      width: 175,
-                      color: Colors.transparent,
+                  ],
+                ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    InkWell(
+                      onTap: () {
+                         Navigator.pushNamed(context, CaptureITRoutes.textToSpeechRoute);
+                      },
                       child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.transparent,
-                          border: Border.all(
-                            color: Colors.black,
-                            width: 3,
+                        height: 175,
+                        width: 175,
+                        color: Colors.transparent,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.transparent,
+                            border: Border.all(
+                              color: Colors.black,
+                              width: 3,
+                            ),
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(20),
+                            ),
                           ),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(20),
-                          ),
+                          child: new Image.asset('assets/mic.png'),
                         ),
-                        child: new Image.asset('assets/mic.png'),
                       ),
                     ),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      print("hi");
-                    },
-                    child: Container(
-                      height: 175,
-                      width: 175,
-                      color: Colors.transparent,
+                    InkWell(
+                      onTap: () {
+                        Navigator.pushNamed(context, CaptureITRoutes.mapRoute);
+                      },
                       child: Container(
-                        padding: EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          color: Colors.transparent,
-                          border: Border.all(
-                            color: Colors.black,
-                            width: 3,
+                        height: 175,
+                        width: 175,
+                        color: Colors.transparent,
+                        child: Container(
+                          padding: EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            color: Colors.transparent,
+                            border: Border.all(
+                              color: Colors.black,
+                              width: 3,
+                            ),
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(20),
+                            ),
                           ),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(20),
-                          ),
+                          child: new Image.asset('assets/map.png'),
                         ),
-                        child: new Image.asset('assets/map.png'),
                       ),
                     ),
-                  ),
-                ],
-              ),
-              Padding(
-                padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
-              ),
-            ],
-          ),
+                  ],
+                ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+                ),
+              ],
+            ),
+
+          )
+
         ),
       ),
     );

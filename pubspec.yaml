@@ -41,6 +41,8 @@ dependencies:
   google_fonts: ^2.1.0
   firebase_ml_vision: ^0.9.10
   clipboard: ^0.1.2+8
+  dropdown_customizable: ^1.0.0
+  dropdown_below: ^1.0.1
   # http:
   # path_provider:
   # image:
