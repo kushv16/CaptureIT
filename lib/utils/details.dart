@@ -5,8 +5,7 @@ import 'package:flutter/material.dart';
 
 class Details extends StatefulWidget {
   final String text;
-  Future<File> imageFile;
-  Details(this.text, this.imageFile);
+  Details(this.text);
   @override
   _DetailsState createState() => _DetailsState();
 }
@@ -38,38 +37,10 @@ class _DetailsState extends State<Details> {
             height: double.infinity,
             width: double.infinity,
             child: SelectableText(
-                widget.text.isEmpty ? 'No Text Available' : widget.text),
+                widget.text.isEmpty ? 'No Text Available' : widget.text,
+                style: TextStyle(fontWeight: FontWeight.bold, fontFamily: 'roboto'),
+            ),
           ),
-          Container(
-            child: showImage(),
-          )
         ]));
-  }
-
-  Widget showImage() {
-    return FutureBuilder<File>(
-      future: widget.imageFile,
-      builder: (BuildContext context, AsyncSnapshot<File> snapshot) {
-        imageFileReturn = snapshot.data;
-        if (snapshot.connectionState == ConnectionState.done &&
-            snapshot.data != null) {
-          return Image.file(
-            imageFileReturn,
-            width: 400,
-            height: 400,
-          );
-        } else if (snapshot.error != null) {
-          return const Text(
-            'Error Picking Image',
-            textAlign: TextAlign.center,
-          );
-        } else {
-          return const Text(
-            'No Image Selected',
-            textAlign: TextAlign.center,
-          );
-        }
-      },
-    );
   }
 }

@@ -1,6 +1,7 @@
 import 'dart:convert';
 // import 'dart:ffi';
 import 'dart:io';
+import 'dart:ui';
 
 import 'package:firebase_ml_vision/firebase_ml_vision.dart';
 import 'package:flutter/material.dart';
@@ -66,12 +67,12 @@ class _ImageTranslateState extends State<ImageTranslate> {
             FlatButton(
               onPressed: scanText,
               shape: RoundedRectangleBorder(
-                side: BorderSide(color: Colors.black, width: 3),
-                borderRadius: BorderRadius.circular(30),
+                side: BorderSide(color: Colors.black, width: 2),
+                borderRadius: BorderRadius.circular(20),
               ),
               child: Text(
                 'Scan',
-                style: TextStyle(color: Colors.black),
+                style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
               ),
             )
         ],
@@ -79,6 +80,8 @@ class _ImageTranslateState extends State<ImageTranslate> {
       floatingActionButton: FloatingActionButton(
         onPressed: getImage,
         child: Icon(Icons.add_a_photo),
+        backgroundColor: Colors.yellow,
+        foregroundColor: Colors.black,
       ),
       body: Container(
         height: double.infinity,
@@ -114,7 +117,7 @@ class _ImageTranslateState extends State<ImageTranslate> {
     await translateText(_text, _value);
     Navigator.of(context).pop();
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => Details(_output, _image)));
+        .push(MaterialPageRoute(builder: (context) => Details(_output)));
   }
 
   Future getImage() async {

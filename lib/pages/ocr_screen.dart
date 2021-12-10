@@ -34,22 +34,24 @@ class _CameraPageState extends State<CameraPage> {
             style: new TextStyle(color: Colors.black),
           ),
           actions: [
-            ElevatedButton(
-              child: Text('Scan'),
+            FlatButton(
               onPressed: scanText,
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Colors.yellow),
-
-                // shadowColor: Color.alphaBlend(Colors.yellow, Colors.black),
-                // padding: MaterialStateProperty.all(EdgeInsets.all(50)),
-                // textStyle: MaterialStateProperty.all(TextStyle(fontSize: 30))
+              shape: RoundedRectangleBorder(
+                side: BorderSide(color: Colors.black, width: 2),
+                borderRadius: BorderRadius.circular(20),
               ),
-            ),
+              child: Text(
+                'Scan',
+                style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+              ),
+            )
           ],
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: getImage,
           child: Icon(Icons.add_a_photo),
+          backgroundColor: Colors.yellow,
+          foregroundColor: Colors.black,
         ),
         body: Container(
           height: double.infinity,
@@ -84,7 +86,7 @@ class _CameraPageState extends State<CameraPage> {
 
     Navigator.of(context).pop();
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => Details(_text, _image)));
+        .push(MaterialPageRoute(builder: (context) => Details(_text)));
   }
 
   Future getImage() async {
