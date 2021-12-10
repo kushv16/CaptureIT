@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'dart:ffi';
+// import 'dart:ffi';
 import 'dart:io';
 
 import 'package:firebase_ml_vision/firebase_ml_vision.dart';
@@ -114,7 +114,7 @@ class _ImageTranslateState extends State<ImageTranslate> {
     await translateText(_text, _value);
     Navigator.of(context).pop();
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => Details(_output)));
+        .push(MaterialPageRoute(builder: (context) => Details(_output, _image)));
   }
 
   Future getImage() async {

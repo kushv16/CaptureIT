@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'dart:ffi';
+// import 'dart:ffi';
 import 'dart:io';
 
 import 'package:firebase_ml_vision/firebase_ml_vision.dart';
@@ -18,6 +18,7 @@ class CameraPage extends StatefulWidget {
 class _CameraPageState extends State<CameraPage> {
   String _text = '';
   var _image = null;
+  late Future<File> imageFile;
   final picker = ImagePicker();
 
   @override
@@ -25,25 +26,25 @@ class _CameraPageState extends State<CameraPage> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.yellow,
-            iconTheme: IconThemeData(
-              color: Colors.black, //change your color here
-            ),
+          iconTheme: IconThemeData(
+            color: Colors.black, //change your color here
+          ),
           title: Text(
             "OCR",
             style: new TextStyle(color: Colors.black),
           ),
           actions: [
-            FlatButton(
+            ElevatedButton(
+              child: Text('Scan'),
               onPressed: scanText,
-              shape: RoundedRectangleBorder(
-                side: BorderSide(color: Colors.black, width: 3),
-                borderRadius: BorderRadius.circular(30),
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(Colors.yellow),
+
+                // shadowColor: Color.alphaBlend(Colors.yellow, Colors.black),
+                // padding: MaterialStateProperty.all(EdgeInsets.all(50)),
+                // textStyle: MaterialStateProperty.all(TextStyle(fontSize: 30))
               ),
-              child: Text(
-                'Scan',
-                style: TextStyle(color: Colors.black),
-              ),
-            )
+            ),
           ],
         ),
         floatingActionButton: FloatingActionButton(
@@ -83,7 +84,7 @@ class _CameraPageState extends State<CameraPage> {
 
     Navigator.of(context).pop();
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => Details(_text)));
+        .push(MaterialPageRoute(builder: (context) => Details(_text, _image)));
   }
 
   Future getImage() async {
