@@ -1,5 +1,3 @@
-import 'dart:convert';
-// import 'dart:ffi';
 import 'dart:io';
 
 import 'package:firebase_ml_vision/firebase_ml_vision.dart';
@@ -42,7 +40,8 @@ class _CameraPageState extends State<CameraPage> {
               ),
               child: Text(
                 'Scan',
-                style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                style:
+                    TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
               ),
             )
           ],

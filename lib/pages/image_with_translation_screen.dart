@@ -28,14 +28,14 @@ class _ImageTranslateState extends State<ImageTranslate> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-         backgroundColor: Colors.yellow,
-            iconTheme: IconThemeData(
-    color: Colors.black, //change your color here
-  ),
-          title: Text(
-            "OCR",
-            style: new TextStyle(color: Colors.black),
-          ),
+        backgroundColor: Colors.yellow,
+        iconTheme: IconThemeData(
+          color: Colors.black, //change your color here
+        ),
+        title: Text(
+          "OCR",
+          style: new TextStyle(color: Colors.black),
+        ),
         actions: [
           DropdownButton(
             value: _value,
@@ -64,17 +64,18 @@ class _ImageTranslateState extends State<ImageTranslate> {
               });
             },
           ),
-            FlatButton(
-              onPressed: scanText,
-              shape: RoundedRectangleBorder(
-                side: BorderSide(color: Colors.black, width: 2),
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Text(
-                'Scan',
-                style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-              ),
-            )
+          FlatButton(
+            onPressed: scanText,
+            shape: RoundedRectangleBorder(
+              side: BorderSide(color: Colors.black, width: 2),
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: Text(
+              'Scan',
+              style:
+                  TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+            ),
+          )
         ],
       ),
       floatingActionButton: FloatingActionButton(
