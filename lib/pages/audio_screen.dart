@@ -14,21 +14,20 @@ class TextToSpeech extends StatefulWidget {
 
 class TextToSpeechState extends State<TextToSpeech> {
   String result = "Coming Soon";
-  
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-          appBar: AppBar(
-           backgroundColor: Colors.yellow,
-            iconTheme: IconThemeData(
-    color: Colors.black, //change your color here
-  ),
-          title: Text(
-            "Text To Speech",
-            style: new TextStyle(color: Colors.black),
-          ),
+      appBar: AppBar(
+        backgroundColor: Colors.yellow,
+        iconTheme: IconThemeData(
+          color: Colors.black,
         ),
+        title: Text(
+          "Text To Speech",
+          style: new TextStyle(color: Colors.black),
+        ),
+      ),
       body: Center(
         child: Text(
           result,
