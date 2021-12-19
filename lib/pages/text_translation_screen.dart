@@ -3,6 +3,7 @@ import 'package:translator/translator.dart';
 import '../utils/dropdownBelowTest.dart';
 
 class TextTranslate extends StatefulWidget {
+  const TextTranslate({Key? key}) : super(key: key);
   @override
   _HomeState createState() => _HomeState();
 }
@@ -16,23 +17,25 @@ class _HomeState extends State<TextTranslate> {
 
   @override
   Widget build(BuildContext context) {
+    // list of items in drop down button
     List<DropdownMenuItem> _dropdownTestItems = [
-      DropdownMenuItem(child: Text("English"), value: "en"),
-      DropdownMenuItem(child: Text("Afrikaans"), value: "af"),
-      DropdownMenuItem(child: Text("Albanian"), value: "sq"),
-      DropdownMenuItem(child: Text("Amharic"), value: "am"),
-      DropdownMenuItem(child: Text("Arabic"), value: "ar"),
-      DropdownMenuItem(child: Text("Armenian"), value: "hy"),
-      DropdownMenuItem(child: Text("Azerbaijani"), value: "az"),
-      DropdownMenuItem(child: Text("Basque"), value: "eu"),
-      DropdownMenuItem(child: Text("Belarusian"), value: "be"),
-      DropdownMenuItem(child: Text("Bengali"), value: "bn"),
-      DropdownMenuItem(child: Text("Bosnian"), value: "bs"),
-      DropdownMenuItem(child: Text("Bulgarian"), value: "bg"),
-      DropdownMenuItem(child: Text("Catalan"), value: "cat"),
-      DropdownMenuItem(child: Text("Marathi"), value: "mr"),
+      const DropdownMenuItem(child: Text("English"), value: "en"),
+      const DropdownMenuItem(child: Text("Afrikaans"), value: "af"),
+      const DropdownMenuItem(child: Text("Albanian"), value: "sq"),
+      const DropdownMenuItem(child: Text("Amharic"), value: "am"),
+      const DropdownMenuItem(child: Text("Arabic"), value: "ar"),
+      const DropdownMenuItem(child: Text("Armenian"), value: "hy"),
+      const DropdownMenuItem(child: Text("Azerbaijani"), value: "az"),
+      const DropdownMenuItem(child: Text("Basque"), value: "eu"),
+      const DropdownMenuItem(child: Text("Belarusian"), value: "be"),
+      const DropdownMenuItem(child: Text("Bengali"), value: "bn"),
+      const DropdownMenuItem(child: Text("Bosnian"), value: "bs"),
+      const DropdownMenuItem(child: Text("Bulgarian"), value: "bg"),
+      const DropdownMenuItem(child: Text("Catalan"), value: "cat"),
+      const DropdownMenuItem(child: Text("Marathi"), value: "mr"),
     ];
 
+    // change the dropdown item on change
     onChangeDropdownTests(selectedTest) {
       setState(() {
         _value = selectedTest;
@@ -44,6 +47,7 @@ class _HomeState extends State<TextTranslate> {
       });
     }
 
+    // update user text on change and translate in real time
     onChangeTextField(englishText) {
       text = englishText;
       translator.translate(text, to: _value).then((output) {
@@ -56,12 +60,12 @@ class _HomeState extends State<TextTranslate> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.yellow,
-                      iconTheme: IconThemeData(
-    color: Colors.black, //change your color here
-  ),
-          title: Text(
+          iconTheme: const IconThemeData(
+            color: Colors.black, //change your color here
+          ),
+          title: const Text(
             "Language Translation",
-            style: new TextStyle(color: Colors.black),
+            style: TextStyle(color: Colors.black),
           ),
         ),
         backgroundColor: Colors.yellow,
@@ -100,7 +104,7 @@ class _HomeState extends State<TextTranslate> {
                       ]),
                 ),
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.fromLTRB(15, 15, 15, 15),
               ),
               Container(
@@ -115,15 +119,16 @@ class _HomeState extends State<TextTranslate> {
                           height: 100,
                           child: DropdownBelow(
                             itemWidth: 200,
-                            itemTextstyle: TextStyle(
+                            itemTextstyle: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w400,
                                 color: Colors.black),
-                            boxTextstyle: TextStyle(
+                            boxTextstyle: const TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.w400,
                                 color: Colors.black),
-                            boxPadding: EdgeInsets.fromLTRB(13, 12, 13, 12),
+                            boxPadding:
+                                const EdgeInsets.fromLTRB(13, 12, 13, 12),
                             boxWidth: 380,
                             boxHeight: 70,
                             boxDecoration: BoxDecoration(
@@ -134,11 +139,11 @@ class _HomeState extends State<TextTranslate> {
                               ),
                               borderRadius: BorderRadius.circular(30),
                             ),
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.arrow_drop_down_circle_outlined,
                               color: Colors.black,
                             ),
-                            hint: Text('Choose Language'),
+                            hint: const Text('Choose Language'),
                             value: _value,
                             items: _dropdownTestItems,
                             onChanged: onChangeDropdownTests,
@@ -146,7 +151,9 @@ class _HomeState extends State<TextTranslate> {
                         ),
                         Container(
                           child: TextFormField(
-                            key: translatedText.isNotEmpty ? Key(translatedText) : Key(""),
+                            key: translatedText.isNotEmpty
+                                ? Key(translatedText)
+                                : Key(""),
                             initialValue: translatedText,
                             cursorHeight: 30,
                             maxLines: 12,

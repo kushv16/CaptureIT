@@ -1,9 +1,4 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
-// ignore: import_of_legacy_library_into_null_safe
-import 'package:barcode_scan/barcode_scan.dart';
-import 'package:flutter/services.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class TextToSpeech extends StatefulWidget {
   @override
@@ -20,18 +15,18 @@ class TextToSpeechState extends State<TextToSpeech> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.yellow,
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: Colors.black,
         ),
-        title: Text(
+        title: const Text(
           "Text To Speech",
-          style: new TextStyle(color: Colors.black),
+          style: TextStyle(color: Colors.black),
         ),
       ),
       body: Center(
         child: Text(
           result,
-          style: new TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+          style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
         ),
       ),
     );

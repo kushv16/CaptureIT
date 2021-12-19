@@ -1,3 +1,4 @@
+// routes to all the pages within the application
 class CaptureITRoutes {
   static String defaultRoute = "/";
   static String homeRoute = '/home';

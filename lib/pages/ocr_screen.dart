@@ -1,5 +1,5 @@
 import 'dart:io';
-
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:firebase_ml_vision/firebase_ml_vision.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -14,8 +14,11 @@ class CameraPage extends StatefulWidget {
 }
 
 class _CameraPageState extends State<CameraPage> {
+  // stores user entered text
   String _text = '';
+  // stroes the image clicked by the user
   var _image = null;
+  // ImagePicker object created that stores the image
   late Future<File> imageFile;
   final picker = ImagePicker();
 
@@ -24,21 +27,21 @@ class _CameraPageState extends State<CameraPage> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.yellow,
-          iconTheme: IconThemeData(
+          iconTheme: const IconThemeData(
             color: Colors.black, //change your color here
           ),
-          title: Text(
+          title: const Text(
             "OCR",
-            style: new TextStyle(color: Colors.black),
+            style: TextStyle(color: Colors.black),
           ),
           actions: [
             FlatButton(
               onPressed: scanText,
               shape: RoundedRectangleBorder(
-                side: BorderSide(color: Colors.black, width: 2),
+                side: const BorderSide(color: Colors.black, width: 2),
                 borderRadius: BorderRadius.circular(20),
               ),
-              child: Text(
+              child: const Text(
                 'Scan',
                 style:
                     TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
@@ -48,7 +51,7 @@ class _CameraPageState extends State<CameraPage> {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: getImage,
-          child: Icon(Icons.add_a_photo),
+          child: const Icon(Icons.add_a_photo),
           backgroundColor: Colors.yellow,
           foregroundColor: Colors.black,
         ),
@@ -64,10 +67,11 @@ class _CameraPageState extends State<CameraPage> {
         ));
   }
 
+  // scans the input image and extracts the text
   Future scanText() async {
     showDialog(
         context: context,
-        builder: (BuildContext context) => Center(
+        builder: (BuildContext context) => const Center(
               child: CircularProgressIndicator(),
             ));
     final FirebaseVisionImage visionImage =
@@ -82,19 +86,17 @@ class _CameraPageState extends State<CameraPage> {
         _text += line.text + '\n';
       }
     }
-
     Navigator.of(context).pop();
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => Details(_text)));
   }
 
+  // uses the imagepicker object to get an image
   Future getImage() async {
     final pickedFile = await picker.getImage(source: ImageSource.camera);
     setState(() {
       if (pickedFile != null) {
         _image = pickedFile;
-      } else {
-        print('No image selected');
       }
     });
   }

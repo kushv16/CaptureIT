@@ -1,14 +1,11 @@
-import 'dart:convert';
-// import 'dart:ffi';
 import 'dart:io';
 import 'dart:ui';
-
-import 'package:firebase_ml_vision/firebase_ml_vision.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-
 import '../utils/details.dart';
 import 'package:translator/translator.dart';
+// ignore: import_of_legacy_library_into_null_safe
+import 'package:firebase_ml_vision/firebase_ml_vision.dart';
 
 class ImageTranslate extends StatefulWidget {
   const ImageTranslate({Key? key}) : super(key: key);
@@ -18,10 +15,16 @@ class ImageTranslate extends StatefulWidget {
 }
 
 class _ImageTranslateState extends State<ImageTranslate> {
+  // stores user entered text
   String _text = '';
+  // stores user selected output language
   String _value = 'af';
+  // stores the translated output
   String _output = "";
+  // stroes the image clicked by the user
   var _image = null;
+
+  // ImagePicker object created that stores the image
   final picker = ImagePicker();
 
   @override
@@ -29,17 +32,19 @@ class _ImageTranslateState extends State<ImageTranslate> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.yellow,
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: Colors.black, //change your color here
         ),
-        title: Text(
+        title: const Text(
           "OCR",
-          style: new TextStyle(color: Colors.black),
+          style: TextStyle(color: Colors.black),
         ),
         actions: [
           DropdownButton(
             value: _value,
-            items: [
+            // list of items in drop down button
+            items: const [
+              DropdownMenuItem(child: Text("English"), value: "en"),
               DropdownMenuItem(child: Text("Afrikaans"), value: "af"),
               DropdownMenuItem(child: Text("Albanian"), value: "sq"),
               DropdownMenuItem(child: Text("Amharic"), value: "am"),
@@ -51,10 +56,10 @@ class _ImageTranslateState extends State<ImageTranslate> {
               DropdownMenuItem(child: Text("Bengali"), value: "bn"),
               DropdownMenuItem(child: Text("Bosnian"), value: "bs"),
               DropdownMenuItem(child: Text("Bulgarian"), value: "bg"),
-              DropdownMenuItem(child: Text("Catalan"), value: "ca"),
+              DropdownMenuItem(child: Text("Catalan"), value: "cat"),
               DropdownMenuItem(child: Text("Marathi"), value: "mr"),
             ],
-            hint: Text(
+            hint: const Text(
               "Select item",
               style: TextStyle(color: Colors.white),
             ),
@@ -70,7 +75,7 @@ class _ImageTranslateState extends State<ImageTranslate> {
               side: BorderSide(color: Colors.black, width: 2),
               borderRadius: BorderRadius.circular(20),
             ),
-            child: Text(
+            child: const Text(
               'Scan',
               style:
                   TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
@@ -80,7 +85,7 @@ class _ImageTranslateState extends State<ImageTranslate> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: getImage,
-        child: Icon(Icons.add_a_photo),
+        child: const Icon(Icons.add_a_photo),
         backgroundColor: Colors.yellow,
         foregroundColor: Colors.black,
       ),
@@ -97,10 +102,11 @@ class _ImageTranslateState extends State<ImageTranslate> {
     );
   }
 
+  // scans the input image and extracts the text
   Future scanText() async {
     showDialog(
         context: context,
-        builder: (BuildContext context) => Center(
+        builder: (BuildContext context) => const Center(
               child: CircularProgressIndicator(),
             ));
     final FirebaseVisionImage visionImage =
@@ -115,12 +121,14 @@ class _ImageTranslateState extends State<ImageTranslate> {
         _text += line.text + " ";
       }
     }
+    // making use of await to convert Future<String> to String
     await translateText(_text, _value);
     Navigator.of(context).pop();
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => Details(_output)));
   }
 
+  // uses the imagepicker object to get an image
   Future getImage() async {
     final pickedFile = await picker.getImage(source: ImageSource.camera);
     setState(() {
@@ -132,10 +140,12 @@ class _ImageTranslateState extends State<ImageTranslate> {
     });
   }
 
+  // returns translated output
   Future translateText(String text, String value) async {
     if (text == "") {
       _output = "No Text Detected!";
     } else {
+      // using setState to store the output
       final translated_text = await translate(text, value);
       setState(() {
         _output = translated_text;
@@ -143,9 +153,10 @@ class _ImageTranslateState extends State<ImageTranslate> {
     }
   }
 
+  // initiates the GoogleTranslator object that translates the text
   Future<String> translate(String text, String value) async {
     GoogleTranslator translator = GoogleTranslator();
     var result = await translator.translate(text, to: value);
-    return result.text;
+    return result.text; // return Future<String>
   }
 }

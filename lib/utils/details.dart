@@ -3,11 +3,14 @@ import 'package:flutter/material.dart';
 
 class Details extends StatefulWidget {
   final String text;
-  Details(this.text);
+  // accepts and stores the text that needs to be printed
+  // ignore: use_key_in_widget_constructors
+  const Details(this.text);
   @override
   _DetailsState createState() => _DetailsState();
 }
 
+// used to display the output of ocr and ocr translate pages
 class _DetailsState extends State<Details> {
   final GlobalKey<ScaffoldState> _key = new GlobalKey<ScaffoldState>();
   @override
@@ -15,36 +18,37 @@ class _DetailsState extends State<Details> {
     return Scaffold(
       key: _key,
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Details',
-          style: new TextStyle(color: Colors.black),
+          style: TextStyle(color: Colors.black),
         ),
         backgroundColor: Colors.yellow,
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: Colors.black,
         ),
         actions: [
           IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.copy,
               color: Colors.black,
             ),
+            // copy the text to clipboard
             onPressed: () {
               FlutterClipboard.copy(widget.text).then((value) => _key
                   .currentState!
-                  .showSnackBar(new SnackBar(content: Text('Copied'))));
+                  .showSnackBar(const SnackBar(content: Text('Copied'))));
             },
           )
         ],
       ),
       body: Container(
-        padding: EdgeInsets.all(8),
+        padding: const EdgeInsets.all(8),
         alignment: Alignment.center,
         height: double.infinity,
         width: double.infinity,
         child: SelectableText(
           widget.text.isEmpty ? 'No Text Available' : widget.text,
-          style: TextStyle(
+          style: const TextStyle(
               fontWeight: FontWeight.bold, fontFamily: 'roboto', fontSize: 50),
         ),
       ),

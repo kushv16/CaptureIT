@@ -7,6 +7,8 @@ void main() {
   ));
 }
 
+// helper function to the translate application in text translation
+// and ocr translation
 class TranslateApp extends StatefulWidget {
   @override
   _TranslateAppState createState() => _TranslateAppState();

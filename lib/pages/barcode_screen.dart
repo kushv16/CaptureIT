@@ -13,23 +13,30 @@ class BarcodePage extends StatefulWidget {
 }
 
 class BarcodePageState extends State<BarcodePage> {
+  // stores the result upon scanning
   String result = "Start Scanning!";
+
+  // initiates the scan() object which makes use of the camera
+  // launches the url using launch() method from url_launch
   Future _scanQR() async {
     try {
       ScanResult qrScanResult = await BarcodeScanner.scan();
       String qrResult = qrScanResult.rawContent;
       if (await canLaunch(qrResult)) {
         try {
+          // initiate the website view
           await launch(qrResult, forceWebView: true);
         } on PlatformException {
           throw ' : This app does not support payment QR codes.';
         }
       } else {
+        // storing output in result variable
         setState(() {
           result = qrResult;
         });
       }
     } on PlatformException catch (e) {
+      // incase the user denies the camera permission
       if (e.code == BarcodeScanner.cameraAccessDenied) {
         setState(() {
           result = "Camera Permission was denied";
@@ -40,6 +47,7 @@ class BarcodePageState extends State<BarcodePage> {
         });
       }
     } on FormatException {
+      // in case the user doesnt click any photo and presses the back button
       setState(() {
         result = "You have pressed the back button before scanning anything";
       });
@@ -53,26 +61,26 @@ class BarcodePageState extends State<BarcodePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-          appBar: AppBar(
-           backgroundColor: Colors.yellow,
-            iconTheme: IconThemeData(
-    color: Colors.black, //change your color here
-  ),
-          title: Text(
-            "QR Scanner",
-            style: new TextStyle(color: Colors.black),
-          ),
+      appBar: AppBar(
+        backgroundColor: Colors.yellow,
+        iconTheme: const IconThemeData(
+          color: Colors.black, //change your color here
         ),
+        title: const Text(
+          "QR Scanner",
+          style: TextStyle(color: Colors.black),
+        ),
+      ),
       body: Center(
         child: Text(
           result,
-          style: new TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+          style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
         backgroundColor: Colors.yellow,
-        icon: Icon(Icons.camera_alt, color:Colors.black),
-        label: Text("Scan", style: TextStyle(color: Colors.black)),
+        icon: const Icon(Icons.camera_alt, color: Colors.black),
+        label: const Text("Scan", style: TextStyle(color: Colors.black)),
         onPressed: _scanQR,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,

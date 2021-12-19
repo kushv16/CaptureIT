@@ -6,13 +6,13 @@ import 'package:capture_it/pages/barcode_screen.dart';
 import 'package:capture_it/utils/routes.dart';
 import 'package:capture_it/pages/image_with_translation_screen.dart';
 import 'package:capture_it/pages/map_screen.dart';
-import 'package:firebase_ml_vision/firebase_ml_vision.dart';
 import 'package:flutter/material.dart';
 
 void main() {
   runApp(MyApp());
 }
 
+// main file
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      // linking all the routes
       routes: {
         CaptureITRoutes.defaultRoute: (context) => MyHomePage(),
         CaptureITRoutes.homeRoute: (context) => HomePage(),
@@ -45,12 +46,14 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
+    // timer function used to redirect to the homepage after 3 seconds
     Timer(
         Duration(seconds: 1),
         () => Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (context) => HomePage())));
   }
 
+  // splash screen
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -61,6 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
+// home screen ui buttons and app bar
 class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
