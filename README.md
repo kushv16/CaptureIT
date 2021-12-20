@@ -1,6 +1,6 @@
 [![](https://img.shields.io/badge/Language-Dart-0180C6?style=for-the-badge&logo=Dart)](https://dart.dev/)
 [![](https://img.shields.io/badge/Made%20With-Flutter-69B7F8?style=for-the-badge&logo=Flutter)](https://flutter.dev/)
-[![](https://img.shields.io/badge/Integrated-Firebase-FFCB2B?style=for-the-badge&logo=weightsandbiases)](https://firebase.google.com/)
+[![](https://img.shields.io/badge/Integrated-Firebase-FFCB2B?style=for-the-badge&logo=Firebase)](https://firebase.google.com/)
 
 <h3> CaptureIt lets you search what you see, understand the world around you — using just your camera. The app will allow the user to translate text detected in images along with text-to-speech, scan barcode and help user find the best match for the provided barcode. </h3>  
 
